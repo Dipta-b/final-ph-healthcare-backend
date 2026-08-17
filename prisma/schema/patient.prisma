@@ -1,0 +1,27 @@
+model Patient {
+    id            String    @id @default(uuid(7))
+    name          String
+    email         String    @unique
+    profilePhoto  String?
+    contactNumber String?
+    address       String?
+    isDeleted     Boolean   @default(false)
+    deletedAt     DateTime?
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
+
+    //relation: user er userId takae ekhane foreign key hishebe angta lagabo
+    //userId name flkd lagbe cncnt krte
+    //user nme fld niye User mdl ke indicate korbe
+    userId            String             @unique
+    user              User               @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    appointments      Appointment[]
+    prescriptions     Prescription[]
+    patientHealthData PatientHealthData?
+    medicalReports    MedicalReport[]
+    reviews           Review[]
+
+    @@index([email], name: "idx_patient_email")
+    @@index([isDeleted], name: "idx_patient_deleted")
+    @@map("patient")
+}
