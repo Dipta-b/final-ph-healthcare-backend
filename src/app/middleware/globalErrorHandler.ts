@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import status from "http-status";
-import * as path from "node:path";
 import z from "zod";
-// import { deleteFileFromCloudinary } from "../../config/cloudinary.config";
 import { envVars } from "../config/env";
+import { deleteFileFromCloudinary } from "../config/cloudinary.config";
 
 interface TErrorSource {
   path: string;
@@ -20,16 +19,14 @@ export const globalErrorHandler = async (
     console.log("global error", err);
   }
 
-  //   if (req.file) {
-  //     await deleteFileFromCloudinary(req.file?.path);
-  //   }
+  if (req.file) {
+    await deleteFileFromCloudinary(req.file?.path);
+  }
 
   if (req.files && Array.isArray(req.files) && req.files.length > 0) {
-    for (const file of req.files) {
-      const imageUrls = req.files.map((file) => file.path);
+    const imageUrls = req.files.map((file) => file.path);
 
-      //   await Promise.all(imageUrls.map((url) => deleteFileFromCloudinary(url)));
-    }
+    await Promise.all(imageUrls.map((url) => deleteFileFromCloudinary(url)));
   }
 
   let errorSource: TErrorSource[] = [];

@@ -7,7 +7,7 @@ const router = Router();
 
 router.post(
   "/create-doctor",
-  validateRequest(createDoctorSchema),
+  // validateRequest(createDoctorSchema),
   UserController.createDoctor,
 );
 

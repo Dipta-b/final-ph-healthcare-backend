@@ -11,6 +11,7 @@ import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { indexRoute } from "./app/routes";
 
+
 const app: Application = express();
 app.set("query parser", (str: string) => qs.parse(str));
 

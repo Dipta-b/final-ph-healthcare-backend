@@ -25,11 +25,13 @@ interface EnvConfig {
   GOOGLE_CLIENT_SECRET: string;
   GOOGLE_CALLBACK_URL: string;
   FRONTENDURL: string;
-  // // CLOUDINARY: {
-  // //   CLOUDINARY_NAME: string;
-  // //   CLOUDINARY_API_KEY: string;
-  // //   CLOUDINARY_API_SECRET: string;
-  // };
+  CLOUDINARY: {
+    CLOUDINARY_NAME: string;
+    CLOUDINARY_API_KEY: string;
+    CLOUDINARY_API_SECRET: string;
+  };
+  SUPER_ADMIN_EMAIL: string;
+  SUPER_ADMIN_PASSWORD: string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
@@ -54,9 +56,11 @@ const loadEnvVariables = (): EnvConfig => {
     "GOOGLE_CLIENT_SECRET",
     "GOOGLE_CALLBACK_URL",
     "FRONTEND_URL",
-    // "CLOUDINARY_NAME",
-    // "CLOUDINARY_API_KEY",
-    // "CLOUDINARY_API_SECRET",
+    "CLOUDINARY_NAME",
+    "CLOUDINARY_API_KEY",
+    "CLOUDINARY_API_SECRET",
+    "SUPER_ADMIN_EMAIL",
+    "SUPER_ADMIN_PASSWORD",
   ];
 
   for (const varName of requiredEnvVars) {
@@ -90,11 +94,13 @@ const loadEnvVariables = (): EnvConfig => {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
     GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
     FRONTENDURL: process.env.FRONTEND_URL as string,
-    //   CLOUDINARY: {
-    //     CLOUDINARY_NAME: process.env.CLOUDINARY_NAME as string,
-    //     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
-    //     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
-    //   },
+    CLOUDINARY: {
+      CLOUDINARY_NAME: process.env.CLOUDINARY_NAME as string,
+      CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
+      CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+    },
+    SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL as string,
+    SUPER_ADMIN_PASSWORD: process.env.SUPER_ADMIN_PASSWORD as string,
   };
 };
 
